@@ -13,6 +13,11 @@ modules:
       - name: destinationinstance
     description: |
       REst Proxy Microservice
+    parameters:
+      instances: 3
+      disk-quota: 256M
+      memory: 128M
+      app-name: CMJsonMicroservice
 resources:
   - name: destinationinstance
     type: org.cloudfoundry.managed-service
