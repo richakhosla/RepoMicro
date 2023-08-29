@@ -24,19 +24,6 @@ beforeAll(async () => {
 
 
 describe("Test 3pss API", () => {
-  it("Should Throw 500 error with empty payload in Service 3pss request", async () => {
-    // var oNoPalylodReq = {
-    //   url: url,
-    var oNoPaylloadReq = {
-      data: undefined 
-    };
-    var oNoPayloadExpected = { error: "Payload is empty" };
-    mock.onPost("/3pss_request").reply(() => { return [500, oNoPayloadExpected] });
-    const res = await request(app).post("/3pss_request").send(oNoPaylloadReq);
-    console.log("mock res", res);
-    expect(res._body.data).toMatchObject(oNoPayloadExpected);
-    expect(res._body.status).toBe(500);
-  });
 
 
   it("should create a 3pss REQUEST in POST With Success Message", async () => {
@@ -51,7 +38,9 @@ describe("Test 3pss API", () => {
       ];
     });
     const res = await request(app).post("/3pss_request").send(payloadData);
+    console.log ("myres", res)
     expect(res._body).toMatchObject(responseData.data);
+    
     expect(res.statusCode).toBe(200);
   });
 

@@ -1,28 +1,23 @@
 const express = require("express");
 const app = express();
 const { callPostApi } = require("./service");
-const logger = require('cf-nodejs-logging-support');
+const { default: Logger } = require('cf-nodejs-logging-support/build/main/lib/logger/logger');
 
-
-app.post('/3pss_request', async (req, res, next) => {
+app.post('/3pss_request', async (req, res) => {
     try {
-        
-        let blocks = await callPostApi(req.url, req.data)
+     await callPostApi(req.url,req.data, res);
         //console.log("controller Success", dataRes)
-        res.status(200).send(blocks);
     } catch (error) {
-        logger.error(error);
-        res.status(500).send({ status: 500, errorMessage: error });
+        Logger.error("errorMessage", error)
+        res.status(500).send({ errorMessage: error });
     }
 });
 
-app.post('/cmss_request', async (req, res, next) => {
+app.post('/cmss_request', async (req, res) => {
     try {
-        let blocks = await callPostApi(req.url, req.body);
-        res.status(200).send(blocks);
+        await callPostApi(req.url, req.data, res);
     } catch (error) {
-        logger.error(error);
-        res.status(500).send({ status: 500, errorMessage: error });
+        res.status(500).send({ ErrorMessage: error });
     }
 });
 
