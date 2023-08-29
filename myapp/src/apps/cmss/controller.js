@@ -8,7 +8,6 @@ app.post('/3pss_request', async (req, res) => {
      await callPostApi(req.url,req.data, res);
         //console.log("controller Success", dataRes)
     } catch (error) {
-        Logger.error("errorMessage", error)
         res.status(500).send({ errorMessage: error });
     }
 });
