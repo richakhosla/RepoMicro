@@ -5,7 +5,6 @@ const app = express();
 //comment
 app.use(express.json());
 
-
 const xsenv = require('@sap/xsenv');
 const xssec = require('@sap/xssec');
 const passport = require('passport');
