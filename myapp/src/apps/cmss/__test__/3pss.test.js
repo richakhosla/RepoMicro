@@ -28,7 +28,6 @@ describe("Test 3pss API", () => {
 
   it("should create a 3pss REQUEST in POST With Success Message", async () => {
     // console.log("mockdata Payload: before test execute");
-
     mock.onPost("/3pss_request").reply(() => {
       return [
         200,
